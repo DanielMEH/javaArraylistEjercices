@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 public class Usuario extends Persona {
     ArrayList<Persona> lista = new ArrayList<Persona>();
+
     HashMap<String, ArrayList<Persona>> map = new HashMap<String, ArrayList<Persona>>();
     int Num_personas = 0;
     int edadMayor = 0;
@@ -40,7 +41,6 @@ public class Usuario extends Persona {
                 }
             }
             preg = JOptionPane.showInputDialog("Ingresar un nuevo usuario? (S/N)");
-
     }while (preg.equalsIgnoreCase("si"));
         procesas_Informacion();
     }
@@ -68,6 +68,9 @@ public class Usuario extends Persona {
         for (int i = 0; i < lista.size(); i++) {
             Num_personas = lista.size();
             sumEdadUsuarios += lista.get(i).getEdad();
+            if(lista.get(i).getNombre().equalsIgnoreCase("juan")){
+                System.out.println("El usuario Juan tiene "+lista.get(i).getEdad()+" años");
+            }
             if(lista.get(i).getEdad() > 18){
                 edadMayor++;
             }else{
@@ -79,6 +82,25 @@ public class Usuario extends Persona {
         System.out.println("La suma de las edades de las personas es: " + sumEdadUsuarios);
         System.out.println("El numero de personas mayores de edad es: " + edadMayor+"\n");
         System.out.println("El numero de personas menores " + MenorEdad +"\n");
+
+        Imprimir_Persona_method();
+    }
+    private void Imprimir_Persona_method() {
+
+        Iterator<String> listMapa = map.keySet().iterator();
+
+        while (listMapa.hasNext()){
+
+            String keyData = listMapa.next();
+            ArrayList<Persona> indixe = map.get(keyData);
+
+            for (Persona object : indixe) {
+                System.out.println("Data: "+ object.toString());
+
+            }
+
+        }
+
 
     }
 }
